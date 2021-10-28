@@ -1,6 +1,4 @@
 from data import *
-from data.fake_sim10k import FakeSim10kDetection, FAKE_SIM10K_ROOT
-from data.fake_cityscapes import FAKE_CITYSCAPES_ROOT, FakeCityscapesDetection
 from utils.augmentations import SSDAugmentation
 from layers.modules import MultiBoxLoss
 from ssd import build_ssd
