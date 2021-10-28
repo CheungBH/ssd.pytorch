@@ -1,4 +1,5 @@
 from data import *
+from data.fake_sim10k import FakeSim10kDetection, FAKE_SIM10K_ROOT
 from utils.augmentations import SSDAugmentation
 from layers.modules import MultiBoxLoss
 from ssd import build_ssd
@@ -23,7 +24,7 @@ def str2bool(v):
 parser = argparse.ArgumentParser(
     description='Single Shot MultiBox Detector Training With Pytorch')
 train_set = parser.add_mutually_exclusive_group()
-parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO'],
+parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO', "fake_sim10k"],
                     type=str, help='VOC or COCO')
 parser.add_argument('--dataset_root', default=VOC_ROOT,
                     help='Dataset root directory path')
@@ -85,6 +86,12 @@ def train():
             parser.error('Must specify dataset if specifying dataset_root')
         cfg = voc
         dataset = VOCDetection(root=args.dataset_root,
+                               transform=SSDAugmentation(cfg['min_dim'],
+                                                         MEANS))
+    elif args.dataset == "fake_sim10k":
+        args.dataset_root = FAKE_SIM10K_ROOT
+        cfg = coco
+        dataset = FakeSim10kDetection(root=args.dataset_root, image_set="train",
                                transform=SSDAugmentation(cfg['min_dim'],
                                                          MEANS))
 
