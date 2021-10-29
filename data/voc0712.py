@@ -25,7 +25,7 @@ VOC_CLASSES = (  # always index 0
     'sheep', 'sofa', 'train', 'tvmonitor')
 
 # note: if you used our download scripts, this should be right
-VOC_ROOT = "/media/hkuit164/Elements/VOC2012"
+VOC_ROOT = "/media/hkuit164/Elements/data/VOC"                              
 
 
 class VOCAnnotationTransform(object):
