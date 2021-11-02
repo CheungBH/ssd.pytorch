@@ -23,7 +23,7 @@ def str2bool(v):
 parser = argparse.ArgumentParser(
     description='Single Shot MultiBox Detector Training With Pytorch')
 train_set = parser.add_mutually_exclusive_group()
-parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO', "fake_sim10k", "fake_cityscapes"],
+parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO', "fake_sim10k", "fake_cityscapes", "real_cityscapes"],
                     type=str, help='VOC or COCO')
 parser.add_argument('--dataset_root', default=VOC_ROOT,
                     help='Dataset root directory path')
@@ -98,6 +98,12 @@ def train():
         args.dataset_root = FAKE_CITYSCAPES_ROOT
         cfg = cityscapes
         dataset = FakeCityscapesDetection(root=args.dataset_root, image_set="train",
+                               transform=SSDAugmentation(cfg['min_dim'],
+                                                         MEANS))
+    elif args.dataset == "real_cityscapes":
+        args.dataset_root = REAL_CITYSCAPES_ROOT
+        cfg = cityscapes
+        dataset = RealCityscapesDetection(root=args.dataset_root, image_set="train",
                                transform=SSDAugmentation(cfg['min_dim'],
                                                          MEANS))
 

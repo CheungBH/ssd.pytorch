@@ -77,6 +77,7 @@ class FakeSim10kDetection(data.Dataset):
         self.coco = COCO(osp.join(root, ANNOTATIONS,
                                   INSTANCES_SET.format(image_set)))
         self.ids = list(self.coco.imgToAnns.keys())
+        print("Dataset has {} samples".format(len(self)))
         self.transform = transform
         self.target_transform = target_transform
         self.name = dataset_name

@@ -8,7 +8,7 @@ import torchvision.transforms as transforms
 import cv2
 import numpy as np
 
-FAKE_CITYSCAPES_ROOT = "/media/hkuit155/NewDisk/dataset/fake_dataset/fake_cityscapes/"
+REAL_CITYSCAPES_ROOT = "/media/hkuit155/NewDisk/dataset/fake_dataset/fake_cityscapes/"
 IMAGES = 'train'
 ANNOTATIONS = 'annotations'
 COCO_API = 'PythonAPI'
@@ -58,7 +58,7 @@ class COCOAnnotationTransform(object):
         return res  # [[xmin, ymin, xmax, ymax, label_idx], ... ]
 
 
-class FakeCityscapesDetection(data.Dataset):
+class RealCityscapesDetection(data.Dataset):
     """`MS Coco Detection <http://mscoco.org/dataset/#detections-challenge2016>`_ Dataset.
     Args:
         root (string): Root directory where images are downloaded to.
