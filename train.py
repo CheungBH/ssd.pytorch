@@ -90,13 +90,13 @@ def train():
                                                          MEANS))
     elif args.dataset == "fake_sim10k":
         args.dataset_root = FAKE_SIM10K_ROOT
-        cfg = coco
+        cfg = sim10k
         dataset = FakeSim10kDetection(root=args.dataset_root, image_set="train",
                                transform=SSDAugmentation(cfg['min_dim'],
                                                          MEANS))
     elif args.dataset == "fake_cityscapes":
         args.dataset_root = FAKE_CITYSCAPES_ROOT
-        cfg = coco
+        cfg = cityscapes
         dataset = FakeCityscapesDetection(root=args.dataset_root, image_set="train",
                                transform=SSDAugmentation(cfg['min_dim'],
                                                          MEANS))
