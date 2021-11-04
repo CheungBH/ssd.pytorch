@@ -421,6 +421,12 @@ def evaluate_detections(box_list, output_dir, dataset):
 if __name__ == '__main__':
     # load net
     num_classes = len(labelmap) + 1                      # +1 for background
+    if "cityscapes" in args.trained_model or "sim10k" in args.trained_model:
+        num_classes = 201
+        labelmap = ("car")
+        imgsetpath = os.path.join(args.voc_root, '{:s}.txt')
+        annopath = os.path.join(args.voc_root, 'VOC_annot', '%s.xml')
+        imgpath = os.path.join(args.voc_root, 'val', '%s.png')
     net = build_ssd('test', 300, num_classes)            # initialize SSD
     net.load_state_dict(torch.load(args.trained_model))
     net.eval()

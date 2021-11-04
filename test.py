@@ -79,6 +79,9 @@ def test_net(save_folder, net, cuda, testset, transform, thresh):
 def test_voc():
     # load net
     num_classes = len(VOC_CLASSES) + 1 # +1 background
+    if "cityscapes" in args.trained_model or "sim10k" in args.trained_model:
+        num_classes = 201
+        # VOC_CLASSES = ("car")
     net = build_ssd('test', 300, num_classes) # initialize SSD
     net.load_state_dict(torch.load(args.trained_model))
     net.eval()

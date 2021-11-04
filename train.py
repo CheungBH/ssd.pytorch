@@ -106,8 +106,11 @@ def train():
         dataset = RealCityscapesDetection(root=args.dataset_root, image_set="train",
                                transform=SSDAugmentation(cfg['min_dim'],
                                                          MEANS))
+    # if args.resume:
+    os.makedirs("weights/{}".format(args.dataset), exist_ok=True)
+    # else:
+    #     os.makedirs("weights/{}".format(args.dataset))
 
-    os.makedirs("weights/{}".format(args.dataset))
     if args.visdom:
         import visdom
         viz = visdom.Visdom()
