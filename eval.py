@@ -372,7 +372,7 @@ def test_net(save_folder, net, cuda, dataset, transform, top_k,
 
     # timers
     _t = {'im_detect': Timer(), 'misc': Timer()}
-    output_dir = get_output_dir('ssd300_120000', set_type)
+    output_dir = save_folder
     det_file = os.path.join(output_dir, 'detections.pkl')
 
     for i in range(num_images):
@@ -423,7 +423,7 @@ if __name__ == '__main__':
     num_classes = len(labelmap) + 1                      # +1 for background
     if "cityscapes" in args.trained_model or "sim10k" in args.trained_model:
         num_classes = 201
-        labelmap = ("car")
+        labelmap = ("car",)
         imgsetpath = os.path.join(args.voc_root, '{:s}.txt')
         annopath = os.path.join(args.voc_root, 'VOC_annot', '%s.xml')
         imgpath = os.path.join(args.voc_root, 'val', '%s.png')
